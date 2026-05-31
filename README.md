@@ -164,20 +164,27 @@ The web dashboard runs at `http://localhost:5000` and shows:
 - Top usernames and passwords tried
 - Geolocation of attackers (country, city)
 - Live event feed
+---
+## 📸 Screenshots
 
+### Terminal — Running HoneyTrap
+![Banner](screenshots/banner.png)
+
+### Dashboard — Live Stats
+![Dashboard](screenshots/dashboard.png)
 ---
 
 ## 📅 Roadmap
 
 - [x] Project architecture and README
-- [ ] C++ packet sniffer (`sniffer.cpp`)
-- [ ] SSH honeypot (`ssh_honeypot.py`)
-- [ ] HTTP honeypot (`http_honeypot.py`)
-- [ ] Logger + SQLite (`logger.py`)
-- [ ] GeoIP module (`geoip.py`)
-- [ ] Flask dashboard (`app.py`)
-- [ ] Main entry point (`main.py`)
-- [ ] Testing on local VM
+- [x] C++ packet sniffer (`sniffer.cpp`)
+- [x] SSH honeypot (`ssh_honeypot.py`)
+- [x] HTTP honeypot (`http_honeypot.py`)
+- [x] Logger + SQLite (`logger.py`)
+- [x] GeoIP module (`geoip.py`)
+- [x] Flask dashboard (`app.py`)
+- [x] Main entry point (`main.py`)
+- [x] Testing on local VM
 
 ---
 
