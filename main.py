@@ -5,6 +5,7 @@ from core.pipe_reader import start_pipe_reader
 from servers.ssh_honeypot import start_ssh_honeypot
 from servers.http_honeypot import start_http_honeypot
 from config import SSH_PORT, HTTP_PORT, DASHBOARD_PORT
+from dashboard.app import start_dashboard
 
 # ─── Banner ──────────────────────────────────────────
 def print_banner():
@@ -33,6 +34,7 @@ def main():
         ("SSH honeypot",  start_ssh_honeypot),
         ("HTTP honeypot", start_http_honeypot),
         ("Pipe reader",   start_pipe_reader),
+        ("Dashboard",     start_dashboard),
     ]
 
     for name, func in modules:
