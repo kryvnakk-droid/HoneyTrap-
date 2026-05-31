@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="5">
+    <title>HoneyTrap Events</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #0d1117; color: #c9d1d9; font-family: monospace; padding: 20px; }
+        h1 { color: #f0a500; margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; background: #161b22;
+                border: 1px solid #30363d; font-size: 0.85em; }
+        th { background: #21262d; padding: 8px; text-align: left; color: #58a6ff; }
+        td { padding: 8px; border-top: 1px solid #30363d; }
+        tr:hover { background: #1c2128; }
+        .ssh  { color: #f0a500; }
+        .http { color: #3fb950; }
+        .scan { color: #ff7b72; }
+        a { color: #58a6ff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>🍯 Live Events</h1>
+    <p style="color:#8b949e; margin-bottom:20px;">
+        Last 100 events · Auto-refresh 5s &nbsp;|&nbsp;
+        <a href="/">← Dashboard</a>
+    </p>
+
+    <table>
+        <tr>
+            <th>Time</th>
+            <th>Type</th>
+            <th>IP</th>
+            <th>Port</th>
+            <th>User</th>
+            <th>Password</th>
+            <th>Path</th>
+            <th>Country</th>
+            <th>City</th>
+        </tr>
+        {% for e in events %}
+        <tr>
+            <td>{{ e.timestamp }}</td>
+            <td class="
+                {% if 'SSH' in e.event_type %}ssh
+                {% elif 'HTTP' in e.event_type %}http
+                {% else %}scan{% endif %}
+            ">{{ e.event_type }}</td>
+            <td>{{ e.ip }}</td>
+            <td>{{ e.port or '-' }}</td>
+            <td>{{ e.username or '-' }}</td>
+            <td>{{ e.password or '-' }}</td>
+            <td>{{ e.path or '-' }}</td>
+            <td>{{ e.country or '-' }}</td>
+            <td>{{ e.city or '-' }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

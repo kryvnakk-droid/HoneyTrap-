@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="10">
+    <title>HoneyTrap Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #0d1117; color: #c9d1d9; font-family: monospace; padding: 20px; }
+        h1 { color: #f0a500; margin-bottom: 20px; }
+        h2 { color: #58a6ff; margin: 20px 0 10px; }
+        .stats { display: flex; gap: 20px; margin-bottom: 20px; }
+        .card { background: #161b22; border: 1px solid #30363d;
+                padding: 20px; border-radius: 8px; min-width: 150px; text-align: center; }
+        .card .num { font-size: 2em; color: #f0a500; font-weight: bold; }
+        .card .label { color: #8b949e; margin-top: 5px; }
+        table { width: 100%; border-collapse: collapse; background: #161b22;
+                border: 1px solid #30363d; border-radius: 8px; overflow: hidden; }
+        th { background: #21262d; padding: 10px; text-align: left; color: #58a6ff; }
+        td { padding: 10px; border-top: 1px solid #30363d; }
+        tr:hover { background: #1c2128; }
+        .tables { display: flex; gap: 20px; }
+        .table-wrap { flex: 1; }
+        a { color: #58a6ff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>🍯 HoneyTrap Dashboard</h1>
+    <p style="color:#8b949e; margin-bottom:20px;">Auto-refresh every 10s &nbsp;|&nbsp;
+        <a href="/events">Live Events →</a>
+    </p>
+
+    <div class="stats">
+        <div class="card"><div class="num">{{ total }}</div><div class="label">Total Events</div></div>
+        <div class="card"><div class="num">{{ ssh_count }}</div><div class="label">SSH Attempts</div></div>
+        <div class="card"><div class="num">{{ http_count }}</div><div class="label">HTTP Scans</div></div>
+        <div class="card"><div class="num">{{ scan_count }}</div><div class="label">Port Scans</div></div>
+    </div>
+
+    <div class="tables">
+        <div class="table-wrap">
+            <h2>Top IPs</h2>
+            <table>
+                <tr><th>IP</th><th>Attempts</th></tr>
+                {% for row in top_ips %}
+                <tr><td>{{ row.ip }}</td><td>{{ row.cnt }}</td></tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="table-wrap">
+            <h2>Top Passwords</h2>
+            <table>
+                <tr><th>Password</th><th>Count</th></tr>
+                {% for row in top_passwords %}
+                <tr><td>{{ row.password }}</td><td>{{ row.cnt }}</td></tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="table-wrap">
+            <h2>Top Countries</h2>
+            <table>
+                <tr><th>Country</th><th>Count</th></tr>
+                {% for row in top_countries %}
+                <tr><td>{{ row.country }}</td><td>{{ row.cnt }}</td></tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+</html>
